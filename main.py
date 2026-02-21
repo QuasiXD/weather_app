@@ -1,4 +1,5 @@
 import sys
+import os
 import requests
 from PyQt6.QtWidgets import (QApplication,QWidget,QLabel,QPushButton,QLineEdit,QVBoxLayout)
 from PyQt6.QtCore import Qt
@@ -70,7 +71,7 @@ class WeatherApp(QWidget):
         self.get_weather_button.clicked.connect(self.get_weather)
     
     def get_weather(self):
-        api_key = "823f4aed7ef43f5b4a84f334b29b3e50"
+        api_key = os.environ.get("API_KEY")
         city = self.city_input.text()
         url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
         try:
